@@ -4,7 +4,8 @@ import testeController from "../controllers/teste.js";
 
 const route = express.Router();
 
-export const homePage = route.get("/", paginaInicial);
-export const postPagina = route.post("/", postPage);
+route.get("/", paginaInicial);
+route.post("/", postPage);
+route.get("/teste/:idUsuarios/", testeController);
 
-export const teste = route.get("/teste/:idUsuarios/", testeController);
+export default route;

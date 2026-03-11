@@ -1,13 +1,7 @@
 export const paginaInicial = (req, res) => {
-  res.send(`
-        <form action="/" method="POST">
-        Nome do cliente: <input type="text" name="qualquercoisa"><br>
-        Outro campo: <input type="text" name="aquioutrocampo">
-        <button>Olá mundo</button>
-        </form>
-`);
-}
+  res.render("index");
+};
 
 export const postPage = (req, res) => {
-  res.send('SOU O POST')
-}
+  res.send("SOU O POST");
+};
