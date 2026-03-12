@@ -5,19 +5,30 @@
   "type": "module",
   "main": "./src/app.js",
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "webpack -w",
+    "start": "nodemon app.js --ignore public --ignore --frontend"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.30.2",
   "dependencies": {
+    "core-js": "^3.3.2",
+    "css-loader": "^7.1.4",
     "dotenv": "^17.3.1",
     "ejs": "^5.0.1",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "mongoose": "^9.3.0",
+    "regenerator-runtime": "^0.13.3",
+    "style-loader": "^1.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "babel-loader": "^8.0.6",
     "nodemon": "^3.1.14",
-    "webpack": "^5.105.4"
+    "webpack": "^5.105.4",
+    "webpack-cli": "^6.0.1"
   }
 }
