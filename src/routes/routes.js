@@ -1,14 +1,17 @@
 import express from "express";
-import { paginaInicial, postPage } from "../controllers/homeController.js";
+import { homePageIndex } from "../controllers/homeController.js";
+import { loginControllerIndex, loginControllerRegister, loginControllerLogout } from "../controllers/loginController.js";
+import { signControllerIndex, signControllerRegister } from "../controllers/signController.js";
 
 const route = express.Router();
 
-// function middleWare (req, res, next) {
-//     console.log('Passei pelo middleware');
-//     next(); -> PASSA PRA PROXIMA FUNÇAO
-// }
+route.get("/", homePageIndex);
 
-route.get("/", paginaInicial);
-route.post("/", postPage);
+route.get("/login", loginControllerIndex);
+route.post("/login/register", loginControllerRegister);
+route.get("/login/logout", loginControllerLogout);
+
+route.get("/sign-up", signControllerIndex);
+route.post("/sign-up/register", signControllerRegister);
 
 export default route;

@@ -1,1 +1,2 @@
-import "./assets/css/style.css";
+import 'bootstrap';
+import './assets/scss/main.scss';

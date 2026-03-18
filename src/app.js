@@ -12,8 +12,11 @@ import flash from "connect-flash";
 import helmet from "helmet";
 import tinyCsrf from "tiny-csrf";
 import cookieParser from "cookie-parser";
+
 import errorCsrf from "./middlewares/errorCsrf.js";
 import csrf from "./middlewares/csrf.js";
+import signLoginMensages from "./middlewares/signLoginMensages.js";
+import sessionMiddleware from "./middlewares/sessionMiddleware.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -28,16 +31,16 @@ try {
 
 app.use(helmet()); 
 
-app.use(express.urlencoded({ extended: true })); //Trata o metodo POST
+app.use(express.urlencoded({ extended: true }));
 
-app.use(express.json()); //Parser das informaçoes vindas de uma req post
+app.use(express.json());
 
 app.use(express.static(path.resolve(__dirname, "..", "public")));
 
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
 app.use(session({
-  secret: 'Coisa secreta',
+  secret: 'asdkasopdkaowjk31o23kj192o0ikeqi0owjdnasid',
   store: MongoStore.create({
     mongoUrl: process.env.DB_KEY,
   }),
@@ -49,20 +52,21 @@ app.use(session({
   }
 }));
 
-app.use(tinyCsrf(process.env.CSRF_SECRET, ['POST', 'PUT', 'DELETE']));
+app.use(tinyCsrf(process.env.CSRF_SECRET, ['POST', 'PUT', 'DELETE'])); 
+app.use(flash()); 
 
-app.use(flash());
-
-// CONFIGURA O LINK DA API COM O EJS
 app.set("views", path.resolve(__dirname, "views"));
-app.set("view engine", "ejs"); // CONFIGURA A ENGINE
+app.set("view engine", "ejs"); 
 
-// ROTAS
-app.use(csrf); //middlewares csrf -> passa o token para todos os controllers
+app.use(csrf);
 
-app.use(route); //Define as rotas
+app.use(signLoginMensages);
 
-app.use(errorCsrf); //Verifica o erro
+app.use(sessionMiddleware);
+
+app.use(errorCsrf);
+
+app.use(route);
 
 try {
   app.listen(Number(process.env.PORT), () => {
