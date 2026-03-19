@@ -1,0 +1,55 @@
+<%- include('includes/head.ejs') %>
+<%- include('includes/navbar.ejs') %>
+<body class="">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 my-3">
+                <h1 class="text-center">Contatos</h1>
+                <p class="lead text-center">Crie ou edite seus contatos</p>
+            </div>
+        </div>
+    </div>   
+                <%- include('includes/errors.ejs') %>
+                <%- include('includes/sucess.ejs') %>
+            <% if(contato._id) { %>
+                <form method="POST" action="/contato/edit/<%= contato._id %>">
+            <% } else { %>
+                <form method="POST" action="/contato/register">
+            <% } %>        
+                <div class="row justify-content-center">
+                    <div class="col-lg-4">
+                        
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                      <div class="mb-3">
+                        <label class="form-label">Nome</label>
+                        <input value="<%= contato.name %> "type="text" class="form-control" name="name">
+                      </div>
+                      
+                      <div class="mb-3">
+                        <label class="form-label">Sobrenome</label>
+                        <input value="<%= contato.sobrenome %> "type="text" class="form-control" name="sobrenome">
+                      </div>
+                      
+                      <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input value="<%= contato.email %> "type="email" class="form-control" name="email">
+                      </div>
+                      
+                      <div class="mb-3">
+                        <label class="form-label">Telefone</label>
+                        <input value="<%= contato.telefone %>" type="tel" class="form-control" name="telefone">
+                      </div>
+                      
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-2">
+                        <button type="submit" class="btn btn-primary w-100">
+                            Cadastrar contato
+                        </button>
+                    </div>
+                </div>
+            </form>
+<%- include('includes/footer.ejs') %>
