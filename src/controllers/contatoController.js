@@ -6,7 +6,7 @@ export const contatoController = (req, res) => {
 
 export async function contatoControllerRegister(req, res) {
   try {
-    const contato = new Contato(req.body);
+    const contato = new Contato(req.body, req.session.user._id);
     await contato.register();
     
     if (contato.errors.length > 0) {
@@ -17,9 +17,9 @@ export async function contatoControllerRegister(req, res) {
       return;
     }
     
-    req.flash('sucess', 'Seu contato foi criado com sucesso.')
+    req.flash('sucess', 'Seu contato foi criado com sucesso.');
     req.session.save(() => {
-      res.redirect(`/contato/${contato.contato._id}`);
+      res.redirect(`/contato/`);
     });
     return;
   } catch (err) {
@@ -44,7 +44,7 @@ export async function editController(req, res) {
     if (!req.params.id) return res.render('404');
     
     const contato = new Contato(req.body);
-    await contato.edit(req.params.id);
+    await contato.edit(req.params.id, req.session.user._id);
     
     if (contato.errors.length > 0) {
       req.flash('errors', contato.errors);
@@ -54,7 +54,7 @@ export async function editController(req, res) {
       });
       return;
     }
-    req.flash('sucess', 'Seu contato foi alterado com sucesso.')
+    req.flash('sucess', 'Seu contato foi alterado com sucesso.');
     req.session.save(() => {
       res.redirect(`/contato/${contato.contato._id}`);
     });
@@ -62,5 +62,25 @@ export async function editController(req, res) {
   } catch (err) {
     console.log(err);
     return res.render('404');
+  }
+}
+
+export async function deleteContatoController(req, res) {
+  try {
+    if (!req.params.id) return res.render('404');
+    
+    const contato = await Contato.delete(req.params.id, req.session.user._id);
+    if (!contato) return res.render('404');
+    
+    req.flash('sucess', 'Contato apagado com sucesso.');
+    req.session.save(() => {
+      res.redirect('/');
+      return;
+    });
+    return;
+  } catch (err) {
+    console.log(err);
+    res.render('404');
+    return;
   }
 }

@@ -1,24 +1,68 @@
 <%- include('includes/head.ejs') %>
 <%- include('includes/navbar.ejs') %>
-<body class="">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8 my-3">
-                <h1 class="text-center">Agenda</h1>
-                <p class="lead text-center">Sou a sua Agenda</p>
-                
-                <div class="responsive-table">
-                    <table class="table my-3">
-                        <tr>
-                            <td>Emanuel</td>
-                            <td>dos Santos</td>
-                            <td>923020302302</td>
-                            <td>email@email.com</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <%- include('includes/errors.ejs') %>
+
+<body class="bg-light text-light">
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div>
+            <h3 class="mb-0 text-black">Contatos</h3>
+            <small class="text-secondary">Gerencie sua agenda</small>
+          </div>
+          
         </div>
+
+        <% if (contatos.length > 0 && user) { %>
+        <div class="card bg-light border-secondary shadow-sm">
+          <div class="list-group list-group-flush">
+
+
+            <% contatos.forEach(contato => { %>
+              
+              <div class="list-group-item bg-light text-light border-secondary d-flex justify-content-between align-items-center">
+
+                <div>
+                  <div class="fw-bold text-secondary">
+                    <%= contato.name %> <%= contato.sobrenome %>
+                  </div>
+                  <small class="text-secondary">
+                    <%= contato.email %> • <%= contato.telefone %>
+                  </small>
+                </div>
+
+                <div>
+                  <a href="/contato/<%= contato._id %>" class="btn btn-sm text-black btn-outline-secondary me-2">
+                    Editar
+                  </a>
+                  <a href="/contato/delete/<%= contato._id %>" class="btn btn-sm btn-danger">
+                    Delete
+                  </a>
+                </div>
+
+              </div>
+
+            <% }) %>
+
+          </div>
+        </div>
+
+        <% } else if (contatos.length === 0 && user) { %>
+
+        <div class="text-center py-5">
+          <h4 class="text-secondary">Nenhum contato ainda</h4>
+          <a href="/contato" class="btn btn-primary mt-3">
+            Criar primeiro contato
+          </a>
+        </div>
+
+        <% } %>
+
+      </div>
+    </div>
+  </div>
+
+<%- include('includes/errors.ejs') %>
 <%- include('includes/footer.ejs') %>

@@ -3,7 +3,7 @@ import { Login } from "../models/LoginModel.js";
 export const signControllerIndex = (req, res) => {
   if (req.session.user) return res.render('session2');
   return res.render("sign");
-}
+};
 
 export async function signControllerRegister (req, res){
   try {

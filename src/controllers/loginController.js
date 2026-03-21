@@ -5,7 +5,7 @@ export const loginControllerIndex = (req, res) => {
   return res.render("login");
 };
 
-export async function loginControllerRegister (req, res){
+export async function loginControllerRegister(req, res) {
   try {
     const login = new Login(req.body);
     await login.login();
@@ -19,6 +19,7 @@ export async function loginControllerRegister (req, res){
     }
     req.flash('sucess', 'Você entrou no sistema com sucesso!');
     req.session.user = login.user;
+    
     req.session.save(() => {
       return res.redirect('/login');
     });

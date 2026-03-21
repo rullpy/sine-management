@@ -64,9 +64,9 @@ app.use(signLoginMensages);
 
 app.use(sessionMiddleware);
 
-app.use(errorCsrf);
-
 app.use(route);
+
+app.use(errorCsrf);
 
 try {
   app.listen(Number(process.env.PORT), () => {

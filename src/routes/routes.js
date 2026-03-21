@@ -3,7 +3,7 @@ import express from "express";
 import { homePageIndex } from "../controllers/homeController.js";
 import { loginControllerIndex, loginControllerRegister, loginControllerLogout } from "../controllers/loginController.js";
 import { signControllerIndex, signControllerRegister } from "../controllers/signController.js";
-import { contatoController, contatoControllerRegister, editContatoController, editController } from "../controllers/contatoController.js";
+import { contatoController, contatoControllerRegister, editContatoController, editController, deleteContatoController } from "../controllers/contatoController.js";
 
 import loginRequired from "../middlewares/loginRequired.js";
 
@@ -22,5 +22,6 @@ route.get("/contato", loginRequired, contatoController);
 route.post("/contato/register", loginRequired, contatoControllerRegister);
 route.get("/contato/:id", loginRequired, editContatoController);
 route.post("/contato/edit/:id", loginRequired, editController)
+route.get("/contato/delete/:id", loginRequired, deleteContatoController)
 
 export default route;
