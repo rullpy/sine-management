@@ -21,18 +21,20 @@
                         
                       <div class="col-lg-4">
 
-                        <form method="POST" action="/sign-up/register">
+                        <form class="form-sign" method="POST" action="/sign-up/register">
                         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
                           <div class="mb-3">
                             <label class="form-label">Email</label>
                             <input type="email" class="form-control" name="email">
                           </div>
+                          <div class="form-email"></div>
 
                           <div class="mb-3">
                             <label class="form-label">Password</label>
                             <input type="password" class="form-control" name="password">
                           </div>
+                          <div class="form-password"></div>
 
                           <button type="submit" class="btn btn-primary w-100">
                             Criar conta

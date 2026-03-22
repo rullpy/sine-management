@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import validator from "validator";
 
 const ContatoSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  nome: { type: String, required: true },
   sobrenome: { type: String, required: false, default: "" },
   email: { type: String, required: false, default: "" },
   telefone: { type: String, required: false, default: "" },
@@ -53,7 +53,7 @@ export class Contato {
     if (this.errors.length > 0) return;
 
     this.contato = await ContatoModel.create({
-      name: this.body.name,
+      nome: this.body.nome,
       sobrenome: this.body.sobrenome,
       email: this.body.email,
       telefone: this.body.telefone,
@@ -68,7 +68,7 @@ export class Contato {
       this.errors.push("Email inválido!");
     }
 
-    if (!this.body.name) this.errors.push("Nome é obrigatório.");
+    if (!this.body.nome) this.errors.push("Nome é obrigatório.");
 
     if (!this.body.email && !this.body.telefone) {
       this.errors.push("O contato precisa ter e-mail ou telefone.");
@@ -81,9 +81,11 @@ export class Contato {
 
     if (this.errors.length > 0) return;
 
-    this.contato = await ContatoModel.findByIdAndUpdate(id, this.body, {
-      returnDocument: "after",
-    });
+    this.contato = await ContatoModel.findOneAndUpdate(
+      { _id: id, user: this.user },
+      this.body,
+      { returnDocument: "after" }
+    );
   }
 
   cleanUp() {

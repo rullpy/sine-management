@@ -6,7 +6,8 @@
   "main": "./src/app.js",
   "scripts": {
     "dev": "webpack -w",
-    "start": "nodemon app.js --ignore public --ignore frontend"
+    "start": "nodemon app.js --ignore public --ignore frontend",
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
