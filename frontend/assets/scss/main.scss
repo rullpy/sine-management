@@ -1,1 +1,56 @@
-@import "bootstrap/scss/bootstrap";
+@import "~@fontsource/inter/400.css";
+@import "~@fontsource/inter/600.css";
+@import "~@fontsource/poppins/400.css";
+@import "~@fontsource/poppins/700.css";
+
+$font-family-base: 'Inter', sans-serif;
+$primary: #4f46e5;
+$border-radius: 0.5rem;
+
+@import "~bootstrap/scss/bootstrap";
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Poppins', sans-serif;
+}
+
+aside .nav-link {
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+aside .nav-link:hover {
+  background-color: #765eff;
+  color: #000;
+}
+
+.dashboard-card {
+  transition: all 0.2s ease;
+  border-radius: 12px;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.btn {
+  border-radius: 8px;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header a {
+  transition: 0.2s;
+}
+
+header a:hover {
+  color: #000 !important;
+}

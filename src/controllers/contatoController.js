@@ -6,7 +6,7 @@ export const contatoController = (req, res) => {
 
 export async function contatoControllerRegister(req, res) {
   try {
-    const contato = new Contato(req.body, req.session.user._id);
+    const contato = new Contato(req.body);
     await contato.register();
     
     if (contato.errors.length > 0) {
@@ -31,10 +31,7 @@ export async function contatoControllerRegister(req, res) {
 export async function editContatoController (req, res) {
   if (!req.params.id) return res.render('404');
   
-  const contato = await Contato.buscaPorId(
-    req.params.id,
-    req.session.user._id
-  );
+  const contato = await Contato.buscaPorId(req.params.id);
   
   if (!contato) return res.render('404');
   
@@ -45,7 +42,7 @@ export async function editController(req, res) {
   try {
     if (!req.params.id) return res.render('404');
     
-    const contato = new Contato(req.body, req.session.user._id);
+    const contato = new Contato(req.body);
     await contato.edit(req.params.id);
     
     if (contato.errors.length > 0) {
@@ -72,7 +69,7 @@ export async function deleteContatoController(req, res) {
   try {
     if (!req.params.id) return res.render('404');
     
-    const contato = await Contato.delete(req.params.id, req.session.user._id);
+    const contato = await Contato.delete(req.params.id);
     if (!contato) return res.render('404');
     
     req.flash('sucess', 'Contato apagado com sucesso.');

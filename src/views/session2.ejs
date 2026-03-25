@@ -1,21 +1,19 @@
-<%- include('includes/head.ejs') %>
-<%- include('includes/navbar.ejs') %>
+<%- include('includes/head.ejs') %> <%- include('includes/navbar.ejs') %>
 <body class="">
-    <div class="container">
-      <div class="row">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-2"></div>
 
-        <div class="col-lg-2"></div>
-
-        <div class="col-lg-8 my-5 text-center">
-          <p class="lead alert alert-warning">É preciso encerrar a sessão para criar uma nova conta!</p>
-
-        </div>
-
-        <div class="col-lg-2"></div>
+      <div class="col-lg-8 my-5 text-center">
+        <p class="lead alert alert-warning">
+          É preciso encerrar a sessão para criar uma nova conta!
+        </p>
       </div>
 
-    <%- include('includes/errors.ejs') %>
-    <%- include('includes/sucess.ejs') %>
-
+      <div class="col-lg-2"></div>
     </div>
-<%- include('includes/footer.ejs') %>
+
+    <%- include('includes/errors.ejs') %> <%- include('includes/sucess.ejs') %>
+  </div>
+  <%- include('includes/footer.ejs') %>
+</body>

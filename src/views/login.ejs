@@ -1,50 +1,45 @@
-<%- include('includes/head.ejs') %>
-<%- include('includes/navbar.ejs') %>
+<%- include('includes/head.ejs') %> <%- include('includes/navbar.ejs') %>
 <body class="">
-    <div class="container">
-      <div class="row">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-2"></div>
 
-        <div class="col-lg-2"></div>
-
-        <div class="col-lg-8 my-3 text-center">
-          <h1>Login</h1>
-          <p class="lead">Faça login para acessar sua agenda</p>
-        </div>
-
-        <div class="col-lg-2"></div>
+      <div class="col-lg-8 my-3 text-center">
+        <h1>Login</h1>
+        <p class="lead">Faça login para acessar o sistema Sine Maceió.</p>
       </div>
-      <%- include('includes/errors.ejs') %>
-    <%- include('includes/sucess.ejs') %>
 
-      <div class="row justify-content-center">
+      <div class="col-lg-2"></div>
+    </div>
+    <%- include('includes/errors.ejs') %> <%- include('includes/sucess.ejs') %>
 
-        <div class="col-lg-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-4">
+        <form class="form-login" method="POST" action="/login/register">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
 
-          <form class="form-login" method="POST" action="/login/register">
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" />
+          </div>
+          <div class="form-email"></div>
 
-            <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input type="email" class="form-control" name="email">
-            </div>
-            <div class="form-email"></div>
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" />
+          </div>
+          <div class="form-password"></div>
 
-            <div class="mb-3">
-              <label class="form-label">Password</label>
-              <input type="password" class="form-control" name="password">
-            </div>
-            <div class="form-password"></div>
+          <button type="submit" class="btn btn-primary w-100">
+            Fazer login
+          </button>
+        </form>
 
-            <button type="submit" class="btn btn-primary w-100">
-              Fazer login
-            </button>
-          </form>
-
-          <a href="/sign-up" class="btn btn-white border w-100 my-3">
-              Cadastrar
-          </a>
-
-        </div>
+        <a href="/sign-up" class="btn btn-white border w-100 my-3">
+          Cadastrar
+        </a>
       </div>
     </div>
-<%- include('includes/footer.ejs') %>
+  </div>
+  <%- include('includes/footer.ejs') %>
+</body>

@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 import validator from "validator";
 import bcryptjs from "bcryptjs";
+import { Cpf } from "./CpfModel.js";
 
 const LoginSchema = new mongoose.Schema({
   email: { type: String, required: true },
+  cpf: { type: String, required: true, unique: true },
   password: { type: String, required: true },
 });
 
@@ -34,22 +36,36 @@ export class Login {
 
   async register() {
     this.valida();
+    
     await this.userExists();
+    
+    const cpf = new Cpf(this.body.cpf);
+    
+    await cpf.checkCpf();
+    
+    if (cpf.errors.length > 0) {
+      this.errors.push('CPF NÃO AUTORIZADO!');
+    }
 
     if (this.errors.length > 0) return;
 
     const salt = bcryptjs.genSaltSync();
     this.body.password = bcryptjs.hashSync(this.body.password, salt);
-
+    
     this.user = await LoginModel.create(this.body);
   }
-
+  
   async userExists() {
     this.user = await LoginModel.findOne({ email: this.body.email });
 
     if (this.user) {
       this.errors.push("Usuário já existe.");
     }
+  }
+  
+  async cpfChecker() {
+
+  
   }
 
   valida() {
@@ -73,6 +89,7 @@ export class Login {
 
     this.body = {
       email: this.body.email,
+      cpf: this.body.cpf,
       password: this.body.password,
     };
   }

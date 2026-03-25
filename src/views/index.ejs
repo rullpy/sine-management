@@ -1,75 +1,68 @@
 <%- include('includes/head.ejs') %>
 <%- include('includes/navbar.ejs') %>
 
-<body class="bg-light text-light">
+<body class="bg-light">
 
-  <div class="container py-5">
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <% if (user) { %>
-        <div class="d-flex justify-content-between align-items-center mb-4">
-          <div>
-            <h3 class="mb-0 text-black">Contatos</h3>
-            <small class="text-secondary">Gerencie sua agenda</small>
-          </div>
-        </div>
-        <% } else { %>
-            <div class="d-flex justify-content-center mb-4">
-              <div class="text-center">
-                <h1 class="mb-0 text-black">Agenda</h1>
-                <p class="text-secondary">Crie sua agenda e gerencie seus contatos.</p>
-              </div>
-            </div>
-        <% }%>
+<% if (user) { %>
+    <div class="flex-grow-1">
 
-        <% if (contatos.length > 0 && user) { %>
-        <div class="card bg-light border-secondary shadow-sm">
-          <div class="list-group list-group-flush">
+      <main class="p-4">
 
+        <% if (contatos.length > 0) { %>
+
+          <div class="d-flex flex-column gap-3">
 
             <% contatos.forEach(contato => { %>
-              
-              <div class="list-group-item bg-light text-light border-secondary d-flex justify-content-between align-items-center">
 
-                <div>
-                  <div class="fw-bold text-secondary">
-                    <%= contato.nome %> <%= contato.sobrenome %>
+              <div class="card border-0 shadow-sm dashboard-card">
+                <div class="card-body d-flex justify-content-between align-items-center">
+
+                  <div>
+                    <h6 class="fw-semibold text-dark mb-1">
+                      <%= contato.nome %>
+                    </h6>
+                    <h6 class="fw-semibold text-dark mb-1">
+                      CNPJ: <%= contato.cnpj %>
+                    </h6>
+
+                    <div class="text-muted small mb-1">
+                      <%= contato.email %> • <%= contato.telefone %>
+                    </div>
                   </div>
-                  <small class="text-secondary">
-                    <%= contato.email %> • <%= contato.telefone %>
-                  </small>
-                </div>
 
-                <div>
-                  <a href="/contato/<%= contato._id %>" class="btn btn-sm text-black btn-outline-secondary me-2">
-                    Editar
-                  </a>
-                  <a href="/contato/delete/<%= contato._id %>" class="btn btn-sm btn-danger">
-                    Delete
-                  </a>
-                </div>
+                  <div class="d-flex gap-2">
+                    <a href="/contato/<%= contato._id %>" class="btn btn-sm btn-outline-secondary">Editar</a>
+                    <a href="/contato/delete/<%= contato._id %>" class="btn btn-sm btn-outline-danger">Excluir</a>
+                  </div>
 
+                </div>
               </div>
 
             <% }) %>
 
           </div>
-        </div>
 
-        <% } else if (contatos.length === 0 && user) { %>
+        <% } else { %>
 
-        <div class="text-center py-5">
-          <h4 class="text-secondary">Nenhum contato ainda</h4>
-          <a href="/contato" class="btn btn-primary mt-3">
-            Criar primeiro contato
-          </a>
-        </div>
+          <div class="text-center text-muted mt-5">
+            <h5>Nenhum contato ainda</h5>
+            <a href="/contato" class="btn btn-primary mt-3">Criar primeiro contato</a>
+          </div>
 
         <% } %>
 
-      </div>
+      </main>
     </div>
   </div>
 
-<%- include('includes/errors.ejs') %>
+<% } else { %>
+  <main class="container py-5 text-center">
+    <h3>Bem-vindo</h3>
+    <p class="text-muted">Faça login para acessar o sistema</p>
+  </main>
+
+<% } %>
+
 <%- include('includes/footer.ejs') %>
+
+</body>
