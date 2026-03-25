@@ -6,7 +6,7 @@ const ContatoSchema = new mongoose.Schema({
   cnpj: { type: String, required: true },
   email: { type: String, required: false, default: "" },
   telefone: { type: String, required: false, default: "" },
-  description: {type: String, required: false, default: "" },
+  description: { type: String, required: false, default: "" },
   dateTime: { type: Date, required: false, default: Date.now },
 });
 
@@ -34,7 +34,7 @@ export class Contato {
 
   static async delete(id) {
     if (typeof id !== "string") return;
-  
+
     return await ContatoModel.findOneAndDelete({ _id: id });
   }
 
@@ -61,7 +61,7 @@ export class Contato {
 
     if (!this.body.nome) this.errors.push("Nome é obrigatório.");
 
-    if (!this.body.cnpj) this.errors.push("CNPJ é obrigatório.")
+    if (!this.body.cnpj) this.errors.push("CNPJ é obrigatório.");
 
     if (!this.body.email && !this.body.telefone) {
       this.errors.push("O contato precisa ter e-mail ou telefone.");
@@ -74,11 +74,9 @@ export class Contato {
 
     if (this.errors.length > 0) return;
 
-    this.contato = await ContatoModel.findOneAndUpdate(
-      { _id: id },
-      this.body,
-      { returnDocument: "after" }
-    );
+    this.contato = await ContatoModel.findOneAndUpdate({ _id: id }, this.body, {
+      returnDocument: "after",
+    });
   }
 
   cleanUp() {
