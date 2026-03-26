@@ -50,7 +50,7 @@ Web application for managing **companies (contacts)** and **job vacancies**, fea
 ---
 
 ## ⚙️ Installation
--before starting configure a .env file
+- before starting configure a .env file
 
 ```bash
 git clone https://github.com/rullpy/crud-agenda
