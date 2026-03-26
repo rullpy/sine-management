@@ -1,10 +1,10 @@
-# 📒 Companies and Job Vacancies Management System (SINE)
+# Companies and Job Vacancies Management System (SINE)
 
 Web application for managing **companies (contacts)** and **job vacancies**, featuring user authentication and linking vacancies to companies.
 
 ---
 
-## 🚀 Technologies
+## Technologies
 
 - Node.js, Express  
 - MongoDB, Mongoose  
@@ -15,7 +15,7 @@ Web application for managing **companies (contacts)** and **job vacancies**, fea
 
 ---
 
-## 📌 Features
+## Features
 
 - User registration and login  
 - CRUD for companies (contacts)  
@@ -26,30 +26,30 @@ Web application for managing **companies (contacts)** and **job vacancies**, fea
 
 ---
 
-## 🔗 Routes
+## Routes
 
-### 👤 Auth
+###  Auth
 - `GET /sign-up`  
 - `POST /sign-up/register`  
 - `GET /login`  
 - `POST /login/register`  
 - `GET /login/logout`  
 
-### 🏢 Companies
+### Companies
 - `GET /contato`  
 - `POST /contato/register`  
 - `GET /contato/:id`  
 - `POST /contato/edit/:id`  
 - `GET /contato/delete/:id`  
 
-### 💼 Vacancies
+### Vacancies
 - `GET /contato/cria-vaga/:id`  
 - `POST /contato/vaga-criada/:id`  
 - `GET /contato/list-vagas/:id`  
 
 ---
 
-## ⚙️ Installation
+## Installation
 - before starting configure a .env file
 
 ```bash
