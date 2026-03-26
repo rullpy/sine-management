@@ -23,6 +23,14 @@ export class Vagas {
     this.vaga = null;
   }
 
+  static async buscaVagas(empresaId) {
+    const vagas = await VagaModel.find({ empresa: empresaId }).sort({
+      dateTime: -1,
+    });;
+
+    return vagas;
+  }
+
   async register() {
     this.valida();
 

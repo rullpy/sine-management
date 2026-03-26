@@ -4,7 +4,7 @@ import { homePageIndex } from "../controllers/homeController.js";
 import { loginControllerIndex, loginControllerRegister, loginControllerLogout } from "../controllers/loginController.js";
 import { signControllerIndex, signControllerRegister } from "../controllers/signController.js";
 import { contatoController, contatoControllerRegister, editContatoController, editController, deleteContatoController } from "../controllers/contatoController.js";
-import { vagasController, vagasCriarController } from "../controllers/vagaController.js";
+import { vagasController, vagasCriarController, vagasListaController } from "../controllers/vagaController.js";
 
 import loginRequired from "../middlewares/loginRequired.js";
 
@@ -27,5 +27,6 @@ route.get("/contato/delete/:id", loginRequired, deleteContatoController)
 
 route.get("/contato/cria-vaga/:id", loginRequired, vagasController);
 route.post("/contato/vaga-criada/:id", loginRequired, vagasCriarController);
+route.get("/contato/list-vagas/:id", loginRequired, vagasListaController)
 
 export default route;

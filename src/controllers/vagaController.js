@@ -23,7 +23,7 @@ export async function vagasCriarController(req, res) {
     req.flash("sucess", "Sua vaga foi cadastrada com sucesso!");
     req.session.save(() => {
       res.redirect(`/contato/cria-vaga/${req.params.id}`);
-    });    
+    });
   } catch (err) {
     console.log(err);
     return res.render("404");
@@ -32,6 +32,11 @@ export async function vagasCriarController(req, res) {
 
 export async function vagasListaController(req, res) {
   try {
+    if (!req.params.id) return res.render('404');
+
+    const vagas = await Vagas.buscaVagas(req.params.id);
+
+    res.render('list-vagas', { vagas, contatoId: req.params.id });
   } catch (err) {
     console.log(err);
     return res.render("404");
