@@ -55,6 +55,9 @@ Web application for managing **companies (contacts)** and **job vacancies**, fea
 ```bash
 git clone https://github.com/rullpy/crud-agenda
 pnpm install
+```
+
+``` bash
 pnpm run build
 pnpm start
 ```
