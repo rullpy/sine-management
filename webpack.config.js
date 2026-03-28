@@ -20,22 +20,25 @@ export default {
           loader: "babel-loader",
           options: {
             presets: [
-              ["@babel/env", {
-                useBuiltIns: "usage",
-                corejs: 3,
-              }]
+              [
+                "@babel/env",
+                {
+                  useBuiltIns: "usage",
+                  corejs: 3,
+                },
+              ],
             ],
           },
         },
       },
-    {
-      test: /\.scss$/,
-      use: ["style-loader", "css-loader", "sass-loader"],
-    },
-    {
-      test: /\.css$/,
-      use: ["style-loader", "css-loader"],
-    }
+      {
+        test: /\.scss$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
   devtool: "source-map",

@@ -1,10 +1,30 @@
 import express from "express";
 
 import { homePageIndex } from "../controllers/homeController.js";
-import { loginControllerIndex, loginControllerRegister, loginControllerLogout } from "../controllers/loginController.js";
-import { signControllerIndex, signControllerRegister } from "../controllers/signController.js";
-import { contatoController, contatoControllerRegister, editContatoController, editController, deleteContatoController } from "../controllers/contatoController.js";
-import { vagasController, vagasCriarController, vagasListaController, editVagaController, editVagaPostController, deleteVagaController } from "../controllers/vagaController.js";
+import {
+  loginControllerIndex,
+  loginControllerRegister,
+  loginControllerLogout,
+} from "../controllers/loginController.js";
+import {
+  signControllerIndex,
+  signControllerRegister,
+} from "../controllers/signController.js";
+import {
+  contatoController,
+  contatoControllerRegister,
+  editContatoController,
+  editController,
+  deleteContatoController,
+} from "../controllers/contatoController.js";
+import {
+  vagasController,
+  vagasCriarController,
+  vagasListaController,
+  editVagaController,
+  editVagaPostController,
+  deleteVagaController,
+} from "../controllers/vagaController.js";
 
 import loginRequired from "../middlewares/loginRequired.js";
 
@@ -28,8 +48,20 @@ route.get("/contato/delete/:id", loginRequired, deleteContatoController);
 route.get("/contato/cria-vaga/:id", loginRequired, vagasController);
 route.post("/contato/vaga-criada/:id", loginRequired, vagasCriarController);
 route.get("/contato/list-vagas/:id", loginRequired, vagasListaController);
-route.get("/contato/:empresaId/vaga/:vagaId", loginRequired, editVagaController);
-route.post("/contato/:empresaId/vaga/edit/:id", loginRequired, editVagaPostController)
-route.get("/contato/vaga/:empresaId/delete/:vagaId", loginRequired, deleteVagaController)
+route.get(
+  "/contato/:empresaId/vaga/:vagaId",
+  loginRequired,
+  editVagaController,
+);
+route.post(
+  "/contato/:empresaId/vaga/edit/:vagaId",
+  loginRequired,
+  editVagaPostController,
+);
+route.get(
+  "/contato/vaga/:empresaId/delete/:vagaId",
+  loginRequired,
+  deleteVagaController,
+);
 
 export default route;

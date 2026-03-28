@@ -12,7 +12,7 @@ export default class Login {
 
   initCpf() {
     if (!this.form) return;
-    
+
     this.form.addEventListener("keydown", (e) => {
       this.cpfFormater();
       this.numberValidator(e);

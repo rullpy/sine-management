@@ -29,7 +29,7 @@ try {
   console.log(error);
 }
 
-app.use(helmet()); 
+app.use(helmet());
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -39,24 +39,26 @@ app.use(express.static(path.resolve(__dirname, "..", "public")));
 
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
-app.use(session({
-  secret: 'asdkasopdkaowjk31o23kj192o0ikeqi0owjdnasid',
-  store: MongoStore.create({
-    mongoUrl: process.env.DB_KEY,
+app.use(
+  session({
+    secret: "asdkasopdkaowjk31o23kj192o0ikeqi0owjdnasid",
+    store: MongoStore.create({
+      mongoUrl: process.env.DB_KEY,
+    }),
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+      httpOnly: true,
+    },
   }),
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 24 * 7,
-    httpOnly: true,
-  }
-}));
+);
 
-app.use(tinyCsrf(process.env.CSRF_SECRET, ['POST', 'PUT', 'DELETE'])); 
-app.use(flash()); 
+app.use(tinyCsrf(process.env.CSRF_SECRET, ["POST", "PUT", "DELETE"]));
+app.use(flash());
 
 app.set("views", path.resolve(__dirname, "views"));
-app.set("view engine", "ejs"); 
+app.set("view engine", "ejs");
 
 app.use(csrf);
 

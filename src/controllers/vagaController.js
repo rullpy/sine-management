@@ -52,7 +52,11 @@ export async function editVagaController(req, res) {
 
     if (!vagas) return res.render("404");
 
-    res.render("vagas", { vagas, contatoId: null, empresaId: req.params.empresaId });
+    res.render("vagas", {
+      vagas,
+      contatoId: null,
+      empresaId: req.params.empresaId,
+    });
   } catch (err) {
     console.log(err);
     return res.render("404");
@@ -67,7 +71,9 @@ export async function editVagaPostController(req, res) {
     if (vagas.errors.length > 0) {
       req.flash("errors", vagas.errors);
       req.session.save(() => {
-        res.redirect(`/contato/${req.params.empresaId}/vaga/${req.params.vagaId}`);
+        res.redirect(
+          `/contato/${req.params.empresaId}/vaga/${req.params.vagaId}`,
+        );
       });
       return;
     }
@@ -92,8 +98,8 @@ export async function deleteVagaController(req, res) {
     if (!vagaDelete) return res.render("404");
 
     req.session.save(() => {
-      res.redirect(`/contato/list-vagas/${req.params.empresaId}`)
-    })
+      res.redirect(`/contato/list-vagas/${req.params.empresaId}`);
+    });
     return;
   } catch (err) {
     console.log(err);

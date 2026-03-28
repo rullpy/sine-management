@@ -7,7 +7,7 @@ export default class Contato {
 
   init() {
     if (!this.input) return;
-    
+
     this.input.addEventListener("keydown", (e) => {
       this.inputNumberFormat();
       this.numberValidator(e);
