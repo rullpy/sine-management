@@ -28,7 +28,7 @@ export async function contatoControllerRegister(req, res) {
   }
 }
 
-export async function editContatoController (req, res) {
+export async function editContatoController(req, res) {
   if (!req.params.id) return res.render('404');
   
   const contato = await Contato.buscaPorId(req.params.id);

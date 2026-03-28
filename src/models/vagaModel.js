@@ -26,9 +26,17 @@ export class Vagas {
   static async buscaVagas(empresaId) {
     const vagas = await VagaModel.find({ empresa: empresaId }).sort({
       dateTime: -1,
-    });;
+    });
 
     return vagas;
+  }
+
+  static async buscaPorId(id) {
+    if (typeof id !== "string") return;
+
+    const vaga = await VagaModel.findOne({ _id: id });
+
+    return vaga;
   }
 
   async register() {
@@ -43,6 +51,22 @@ export class Vagas {
       description: this.body.description,
       dataEntrevista: this.body.entrevista,
     });
+  }
+  async edit(id) {
+    if (typeof id !== "string") return;
+    this.valida();
+
+    if (this.errors.length > 0) return;
+
+    this.vaga = await VagaModel.findOneAndUpdate({ _id: id }, this.body, {
+      returnDocument: "after",
+    });
+  }
+
+  static async delete(id) {
+    if (typeof id !== "string") return;
+
+    return await VagaModel.findOneAndDelete({ _id: id });
   }
 
   valida() {

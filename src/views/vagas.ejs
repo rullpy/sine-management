@@ -16,7 +16,11 @@
 
     <div class="w-100" style="max-width: 500px;">      
 
+    <% if(contatoId) { %>
       <form method="POST" action="/contato/vaga-criada/<%= contatoId %>">
+    <% } else { %>
+      <form method="POST" action="/contato/<%= empresaId %>/vaga/edit/<%= vagas._id %>">
+    <% } %>
     
       <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
@@ -46,8 +50,21 @@
 
     </form>
 
+    <% if(contatoId) { %>
+        <div class="d-flex gap-2">
+      <a href="/contato/list-vagas/<%= contatoId %>" class="btn btn-sm btn-outline-secondary">Voltar</a>
+    </div>
+    <% } else { %>
+        <div class="d-flex gap-2">
+      <a href="/contato/list-vagas/<%= empresaId %>" class="btn btn-sm btn-outline-secondary">Voltar</a>
+    </div>
+    <% } %>
+
+
   </div>
 
 </main>
 
 <%- include('includes/footer.ejs') %>
+
+</body>

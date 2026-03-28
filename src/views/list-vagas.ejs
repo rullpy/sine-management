@@ -1,7 +1,7 @@
 <%- include('includes/head.ejs') %>
 <%- include('includes/navbar.ejs') %>
 
-<body class="bg-dark">
+<body>
     <div class="flex-grow-1">
 
       <main class="p-4">
@@ -29,6 +29,10 @@
                   </div>
                 </div>
               </div>
+                  <div class="d-flex gap-2">
+                    <a href="/contato/<%= contatoId %>/vaga/<%= vaga._id %>" class="btn btn-sm btn-outline-secondary">Editar</a>
+                    <a href="/contato/vaga/<%= contatoId %>/delete/<%= vaga._id %>" class="btn btn-sm btn-outline-danger">Excluir</a>
+                  </div>
 
             <% }) %>
 
